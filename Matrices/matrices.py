@@ -17,7 +17,7 @@ def inverse(M: np.array) -> np.array:
     '''Возвращает обратную матрицу.
     :param M: Произвольная матрица.'''
     if np.linalg.det(M) == 0:
-        raise 'Матрица не имеет обратной.'
+        raise Exception('Матрица не имеет обратной.')
     else:
         return np.linalg.inv(M)
 
@@ -34,7 +34,7 @@ def sqrt_diagonal(M: np.array) -> np.array:
     if np.count_nonzero(M - np.diag(np.diagonal(M))) == 0:
         return np.sqrt(M)
     else:
-        raise 'Матрица не является диагональной.'
+        raise Exception('Матрица не является диагональной.')
 
 
 def S(P_i: np.array, Q_i: np.array, P_j: np.array, Q_j: np.array) -> np.array:
