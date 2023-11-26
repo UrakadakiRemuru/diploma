@@ -3,7 +3,7 @@ def Q(angle: float) -> np.array:
     '''Возвращает матрицу поворота на угол angle против часовой стрелки в двумерном пространстве.
     :param angle: Угол поворота.
     '''
-    return np.array([[np.cos(angle), -np.sin(angle)], [np.sin(angle), np.cos(angle)]])
+    return np.array([[np.cos(angle * np.pi / 180), -np.sin(angle * np.pi / 180)], [np.sin(angle * np.pi / 180), np.cos(angle * np.pi / 180)]])
 
 
 def P(a: float, b: float) -> np.array:

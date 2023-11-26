@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 from matplotlib.patches import Ellipse, Circle
 
+from Generation.generation import ellipse
 from Non_overlapping_model.non_overlapping_model import transform, transform_ellipse
 
 # w = 10
@@ -8,23 +9,23 @@ from Non_overlapping_model.non_overlapping_model import transform, transform_ell
 # elps = generate_ellipse(2, w, h)
 # draw_scene(elps, w, h)
 
-elp1 = [(1, 1), 4, 1, -45]
-elp2 = [(2, 1), 4, 1, 45]
+elp1 = ellipse((1, 1), 4, 2, 30)
+elp2 = ellipse((2, 1), 4, 2, 120)
 
 c_r = transform(elp1)
 trans_elp = transform_ellipse(elp1, elp2)
-
+print(trans_elp)
 f, (ax1, ax2) = plt.subplots(1, 2,)
 ax1.set(xlim=(-10, 10), ylim=(-10, 10), aspect="equal")
 ax2.set(xlim=(-10, 10), ylim=(-10, 10), aspect="equal")
-elp_i = Ellipse(elp1[0], elp1[1], elp1[2], angle=elp1[3])
-elp_j = Ellipse(elp2[0], elp2[1], elp2[2], angle=elp2[3])
+elp_i = Ellipse(elp1.coord, elp1.a, elp1.b, angle=elp1.angle)
+elp_j = Ellipse(elp2.coord, elp2.a, elp2.b, angle=elp2.angle)
 
 ax1.add_artist(elp_i)
 ax1.add_artist(elp_j)
 
 eps_ii = Circle(c_r, 1)
-eps_ij = Ellipse(trans_elp[0], trans_elp[1], trans_elp[2], angle=trans_elp[3])
+eps_ij = Ellipse(trans_elp.coord, trans_elp.a, trans_elp.b, angle=trans_elp.angle)
 
 ax2.add_artist(eps_ii)
 ax2.add_artist(eps_ij)
