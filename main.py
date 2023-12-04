@@ -9,7 +9,7 @@ h = 10
 # elps = generate_ellipse(2, w, h)
 # draw_scene(elps, w, h)
 
-elp1 = ellipse((1, 1), 4, 2, 30)
+elp1 = ellipse((1, -5), 4, 2, 30)
 elp2 = ellipse((2, 1), 4, 2, 120)
 
 c_r = transform(elp1)

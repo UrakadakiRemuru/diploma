@@ -1,9 +1,12 @@
 import numpy as np
+
+
 def Q(angle: float) -> np.array:
     '''Возвращает матрицу поворота на угол angle против часовой стрелки в двумерном пространстве.
     :param angle: Угол поворота.
     '''
-    return np.array([[np.cos(angle * np.pi / 180), -np.sin(angle * np.pi / 180)], [np.sin(angle * np.pi / 180), np.cos(angle * np.pi / 180)]])
+    return np.array([[np.cos(angle * np.pi / 180), -np.sin(angle * np.pi / 180)],
+                     [np.sin(angle * np.pi / 180), np.cos(angle * np.pi / 180)]])
 
 
 def P(a: float, b: float) -> np.array:
@@ -12,6 +15,7 @@ def P(a: float, b: float) -> np.array:
     :param b: Минорная ось (y).
     '''
     return np.array([[(a / 2) ** 2, 0], [0, (b / 2) ** 2]])
+
 
 def inverse(M: np.array) -> np.array:
     '''Возвращает обратную матрицу.
@@ -43,4 +47,5 @@ def S(P_i: np.array, Q_i: np.array, P_j: np.array, Q_j: np.array) -> np.array:
     :param Q_i: Матрица поворота i-ого эллипса.
     :param P_j: Матрица значений главных осей в квадрате j-ого эллипса.
     :param Q_j: Матрица поворота j-ого эллипса.'''
-    return np.linalg.multi_dot([sqrt_diagonal(P_i), transpose(Q_i), Q_j, inverse(P_j), transpose(Q_j), Q_i, sqrt_diagonal(P_i)])
+    return np.linalg.multi_dot(
+        [sqrt_diagonal(P_i), transpose(Q_i), Q_j, inverse(P_j), transpose(Q_j), Q_i, sqrt_diagonal(P_i)])
